@@ -10,7 +10,7 @@ Here's a breakdown of user stories for the core features of the recipe sharing p
 
 1.1 User Authentication
 
-Registration: 
+Registration:
 
 As a new user, I want to create an account using my email address and password, so that I can save recipes, share my own recipes, and interact with other users.
 
@@ -20,7 +20,7 @@ As a user, I want to receive an email verification link after registration, so t
 
 As a user, I want to be notified if my chosen username or email is already taken, so that I can choose a different one.
 
-Login: 
+Login:
 
 As a registered user, I want to log in to my account using my email address and password, so that I can access my saved recipes and profile.
 
@@ -28,7 +28,7 @@ As a registered user, I want to have the option to log in using a social media a
 
 As a user, I want to have a "Forgot Password" option, so that I can reset my password if I forget it.
 
-Profile Management: 
+Profile Management:
 
 As a registered user, I want to be able to edit my profile information (e.g., username, profile picture, bio), so that I can personalize my profile.
 
@@ -38,7 +38,7 @@ As a registered user, I want to be able to delete my account (with a confirmatio
 
 1.2 Recipe Management
 
-Create Recipes: 
+Create Recipes:
 
 As a registered user, I want to be able to create a new recipe by providing a title, ingredients list, step-by-step instructions, cooking time, serving size, difficulty level, and cuisine type, so that I can share my culinary creations with others.
 
@@ -46,7 +46,7 @@ As a registered user, I want to be able to upload one or more images of my recip
 
 As a user, I want the system to automatically save my recipe as I'm creating it (draft feature), so that I don't lose my work if I accidentally close the browser.
 
-Browse Recipes: 
+Browse Recipes:
 
 As a user (registered or unregistered), I want to be able to search for recipes using keywords (e.g., "chicken", "pasta", "dessert"), so that I can quickly find recipes that match my interests.
 
@@ -54,11 +54,11 @@ As a user, I want to be able to filter recipes by categories (e.g., "vegetarian"
 
 As a user, I want to be able to sort recipes by popularity (e.g., most viewed, highest rated), rating, or date added, so that I can find the best or newest recipes.
 
-View Recipe Details: 
+View Recipe Details:
 
 As a user, I want to be able to view all the details of a recipe, including the title, ingredients, instructions, cooking time, serving size, difficulty level, cuisine type, images, author, ratings, and comments, so that I can get all the information I need to cook the dish.
 
-Edit/Delete Own Recipes: 
+Edit/Delete Own Recipes:
 
 As a registered user, I want to be able to edit my own recipes, so that I can correct mistakes or update them.
 
@@ -66,19 +66,19 @@ As a registered user, I want to be able to delete my own recipes, so that I can 
 
 1.3 User Interaction
 
-Rate Recipes: 
+Rate Recipes:
 
 As a registered user, I want to be able to rate recipes (e.g., using a star rating system), so that I can express my opinion about the recipe.
 
-Comment on Recipes: 
+Comment on Recipes:
 
 As a registered user, I want to be able to leave comments on recipes, so that I can ask questions, provide feedback, or share my own experiences with the recipe.
 
-Save Recipes to Favorites: 
+Save Recipes to Favorites:
 
 As a registered user, I want to be able to save recipes to my favorites list, so that I can easily find them later.
 
-Follow Other Users: 
+Follow Other Users:
 
 As a registered user, I want to be able to follow other users, so that I can see their newly created recipes and activity in my feed.
 
@@ -94,7 +94,7 @@ DB INFORMATION
 
 1. Tables and Columns
 
-Users 
+Users
 
 id (INT, Primary Key, Auto-increment)
 
@@ -102,7 +102,7 @@ username (VARCHAR, Unique, Not Null)
 
 email (VARCHAR, Unique, Not Null)
 
-password_hash (VARCHAR, Not Null) *We'll store a hash of the password, not the actual password for security.
+password_hash (VARCHAR, Not Null) \*We'll store a hash of the password, not the actual password for security.
 
 profile_picture_url (VARCHAR, Null)
 
@@ -112,7 +112,7 @@ created_at (TIMESTAMP, Default: CURRENT_TIMESTAMP)
 
 email_verified_at (TIMESTAMP, Null)
 
-Recipes 
+Recipes
 
 id (INT, Primary Key, Auto-increment)
 
@@ -122,33 +122,33 @@ title (VARCHAR, Not Null)
 
 description (TEXT, Null)
 
-cooking_time (INT, Null) *In minutes
+cooking_time (INT, Null) \*In minutes
 
 servings (INT, Null)
 
-difficulty (VARCHAR, Null) *e.g., "Easy", "Medium", "Hard"
+difficulty (VARCHAR, Null) \*e.g., "Easy", "Medium", "Hard"
 
-cuisine (VARCHAR, Null) *e.g., "Italian", "Mexican", "Chinese"
+cuisine (VARCHAR, Null) \*e.g., "Italian", "Mexican", "Chinese"
 
 created_at (TIMESTAMP, Default: CURRENT_TIMESTAMP)
 
-updated_at (TIMESTAMP, Default: CURRENT_TIMESTAMP, ON UPDATE CURRENT_TIMESTAMP)   
+updated_at (TIMESTAMP, Default: CURRENT_TIMESTAMP, ON UPDATE CURRENT_TIMESTAMP)
 
-Ingredients 
+Ingredients
 
 id (INT, Primary Key, Auto-increment)
 
 name (VARCHAR, Not Null)
 
-RecipeIngredients (Junction Table to handle many-to-many relationship) 
+RecipeIngredients (Junction Table to handle many-to-many relationship)
 
 recipe_id (INT, Not Null, Foreign Key referencing Recipes.id)
 
 ingredient_id (INT, Not Null, Foreign Key referencing Ingredients.id)
 
-quantity (VARCHAR, Null) *e.g., "1 cup", "2 tbsp", "1/2 kg"
+quantity (VARCHAR, Null) \*e.g., "1 cup", "2 tbsp", "1/2 kg"
 
-Instructions 
+Instructions
 
 id (INT, Primary Key, Auto-increment)
 
@@ -158,7 +158,7 @@ step_number (INT, Not Null)
 
 description (TEXT, Not Null)
 
-RecipeImages 
+RecipeImages
 
 id (INT, Primary Key, Auto-increment)
 
@@ -166,7 +166,7 @@ recipe_id (INT, Not Null, Foreign Key referencing Recipes.id)
 
 image_url (VARCHAR, Not Null)
 
-Ratings 
+Ratings
 
 id (INT, Primary Key, Auto-increment)
 
@@ -174,11 +174,11 @@ user_id (INT, Not Null, Foreign Key referencing Users.id)
 
 recipe_id (INT, Not Null, Foreign Key referencing Recipes.id)
 
-rating (INT, Not Null) *e.g., 1 to 5 stars
+rating (INT, Not Null) \*e.g., 1 to 5 stars
 
 created_at (TIMESTAMP, Default: CURRENT_TIMESTAMP)
 
-Comments 
+Comments
 
 id (INT, Primary Key, Auto-increment)
 
@@ -190,7 +190,7 @@ text (TEXT, Not Null)
 
 created_at (TIMESTAMP, Default: CURRENT_TIMESTAMP)
 
-Favorites (Junction Table for saving recipes) 
+Favorites (Junction Table for saving recipes)
 
 user_id (INT, Not Null, Foreign Key referencing Users.id)
 
@@ -198,7 +198,7 @@ recipe_id (INT, Not Null, Foreign Key referencing Recipes.id)
 
 saved_at (TIMESTAMP, Default: CURRENT_TIMESTAMP)
 
-Followers (Junction Table for user following) 
+Followers (Junction Table for user following)
 
 follower_id (INT, Not Null, Foreign Key referencing Users.id)
 
@@ -208,7 +208,7 @@ followed_at (TIMESTAMP, Default: CURRENT_TIMESTAMP)
 
 2. Relationships
 
-One-to-Many: 
+One-to-Many:
 
 A User can create many Recipes.
 
@@ -226,7 +226,7 @@ A User can create many Ratings.
 
 A User can create many Comments.
 
-Many-to-Many: 
+Many-to-Many:
 
 A Recipe can have many Ingredients, and an Ingredient can be in many Recipes (handled by RecipeIngredients).
 
@@ -264,45 +264,45 @@ TECH STACK
 
 Front-End: React
 
-Why React? 
+Why React?
 
-Component-Based Architecture: Makes it easy to build reusable UI elements (like recipe cards, forms, etc.).   
+Component-Based Architecture: Makes it easy to build reusable UI elements (like recipe cards, forms, etc.).
 
-Virtual DOM: Provides efficient updates to the user interface, resulting in a smooth user experience.   
+Virtual DOM: Provides efficient updates to the user interface, resulting in a smooth user experience.
 
-Large Community and Ecosystem: Abundant libraries and tools are available.   
+Large Community and Ecosystem: Abundant libraries and tools are available.
 
 Widely Used: Great for your resume!
 
-Key Libraries/Tools (within React): 
+Key Libraries/Tools (within React):
 
 react-router-dom: For navigation between different pages (e.g., homepage, recipe details, user profile).
 
 axios or fetch: For making API requests to the back-end to get and send data.
 
-State Management (optional initially): 
+State Management (optional initially):
 
 useState and useContext (built-in hooks) for simpler state management.
 
 Redux or Zustand for more complex applications (can be added later if needed).
 
-UI Library (optional): 
+UI Library (optional):
 
 Material UI or Chakra UI for pre-built, stylish components.
 
 2. Back-End: Node.js with Express
 
-Why Node.js and Express? 
+Why Node.js and Express?
 
 JavaScript Everywhere: You'll be using JavaScript on both the front-end (React) and back-end (Node.js), which simplifies development.
 
-Non-Blocking I/O: Node.js can handle many concurrent requests efficiently, which is important for a web application.   
+Non-Blocking I/O: Node.js can handle many concurrent requests efficiently, which is important for a web application.
 
-Express.js: A lightweight and flexible framework that makes it easy to build APIs (Application Programming Interfaces).   
+Express.js: A lightweight and flexible framework that makes it easy to build APIs (Application Programming Interfaces).
 
-Large Community and Ecosystem: Lots of middleware and libraries are available.   
+Large Community and Ecosystem: Lots of middleware and libraries are available.
 
-Key Libraries/Tools (within Node.js/Express): 
+Key Libraries/Tools (within Node.js/Express):
 
 express: The core framework for building the API.
 
